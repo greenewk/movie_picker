@@ -1,16 +1,20 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from time import sleep
 
 class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(10)
 
     def tearDown(self):
         self.browser.quit()
 
     def get_item_input_box(self):
-        return self.browser.find_element_by_id('id_text')
+        return self.browser.find_element_by_name('movie_title')
+
 
 class HomePageTest(FunctionalTest):
 
