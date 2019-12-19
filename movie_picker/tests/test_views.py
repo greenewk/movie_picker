@@ -8,15 +8,23 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
-    def test_home_page_uses_movie_form(self):
-        response = self.client.get('/')
-        self.assertIsInstance(response.context['form'], MovieForm)
+class NewMovieTest(TestCase):
+
+    def test_can_reach_new_movie_page(self):
+        response = self.client.post(
+            'new_movie', data={'title': 'test'}
+        )
+        self.assertEqual(response.status_code, 200)
 
     def test_can_save_POST_request(self):
         self.client.post(
-            '/', data={'title': 'Terminator 2'}
+            '/new_movie/', data={'title': 'Terminator 2'}
+
         )
 
+
         self.assertEqual(Movie.objects.count(), 1)
-        new_movie = Movie.objects.first()
-        self.assertEqual(new_movie.title, 'Terminator 2')
+        self.assertEqual(Movie.objects.first().title, 'Terminator 2')
+
+
+

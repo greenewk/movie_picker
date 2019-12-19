@@ -10,7 +10,7 @@
         <div class="col-md-6 col-md-offset-3 jumbotron">
             <div class="text-center">
                 <h1>Submit a movie title</h1>
-                    <form method="POST" action="{% url 'home' %}">
+                    <form method="POST" action="{% url 'movie_picker:new_movie' %}">
                         {{ form.title }}
                         {% csrf_token %}
                         <table id="id_list_table" class="table">
@@ -21,7 +21,7 @@
                     </form>
             </div>
         </div>
-   </div>   
+   </div>
 </div>
 {% endblock %}
 
