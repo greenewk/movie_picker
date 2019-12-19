@@ -1,11 +1,12 @@
 from django import forms
+from .models import Movie
 
-class ItemForm(forms.models.ModelForm):
+class MovieForm(forms.models.ModelForm):
     class Meta:
-        model = Item
-        fields = ('text',)
+        model = Movie
+        fields = ('title',)
         widgets = {
-            'text': forms.fields.TextInput(attrs={
+            'title': forms.fields.TextInput(attrs={
                 'placeholder': 'Enter a movie title',
                 'class': 'form-control input-lg',
             }),

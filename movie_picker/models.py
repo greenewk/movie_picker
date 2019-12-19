@@ -1,7 +1,8 @@
 from django.db import models
 
-class Item(models.Model):
-    text = models.TextField(default='')
+class Movie(models.Model):
+    title = models.TextField(default='')
 
     def __str__(self):
-        return self.text
+        return self.title
+
