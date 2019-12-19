@@ -1,11 +1,12 @@
 from django.test import TestCase
 from movie_picker.models import Movie
 from movie_picker.forms import MovieForm
+from django.urls import reverse
 
 class HomePageTest(TestCase):
 
     def test_uses_home_template(self):
-        response = self.client.get('/')
+        response = self.client.get(reverse('movie_picker:home'))
         self.assertTemplateUsed(response, 'home.html')
 
 class NewMovieTest(TestCase):

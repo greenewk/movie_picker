@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 MAX_WAIT = 10
-
+APP_URL = '/movie_picker'
 
 class FunctionalTest(StaticLiveServerTestCase):
     def setUp(self):
@@ -47,13 +47,13 @@ class HomePageTest(FunctionalTest):
 
     # Jasper attempts to reach the Super Movie Picker website
     def test_can_reach_homepage(self):
-        response = self.client.get(reverse('home'))
+        response = self.client.get(reverse('movie_picker:home'))
         self.assertTemplateUsed(response, 'home.html')
 
     # Jasper types a movie title in and hits Enter
     # The movie title is then in the list
     def test_can_add_movie_to_list(self):
-        self.browser.get(self.live_server_url)
+        self.browser.get(self.live_server_url + APP_URL)
         inputbox = self.get_item_input_box()
 
         self.assertEqual(
@@ -68,6 +68,18 @@ class HomePageTest(FunctionalTest):
 
     # Jasper tries to add a movie that is already on his list,
     # but is unable to and is warned of this by an error message
+    def test_cannot_add_duplicate_items(self):
+        self.browser.get(self.live_server_url + APP_URL)
+        self.get_item_input_box().send_keys('Jingle All the Way')
+        self.get_item_input_box().send_keys(Keys.ENTER)
+        self.wait_for_row_in_list_table('1: Jingle All the Way')
+
+        self.get_item_input_box().send_keys('Jingle All the Way')
+        self.get_item_input_box().send_keys(Keys.ENTER)
+        self.wait_for(lambda: self.assertEqual(
+            self.browser.find_element_by_css_selector('.has-error').text,
+            "This movie is already on your list."
+        ))
 
     # Jasper decides that he wants to remove a movie from his list
 

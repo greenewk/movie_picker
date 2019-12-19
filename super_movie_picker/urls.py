@@ -19,6 +19,5 @@ from movie_picker import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movie_picker/', include('movie_picker.urls')),
-    path('', views.home, name='home'),
+    path('movie_picker/', include('movie_picker.urls', namespace='movie_picker')),
 ]

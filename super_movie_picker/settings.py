@@ -55,7 +55,9 @@ ROOT_URLCONF = 'super_movie_picker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                os.path.join(BASE_DIR, 'movie_picker', 'templates', 'movie_picker'),
+                ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
