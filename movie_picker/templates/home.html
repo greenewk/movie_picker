@@ -13,17 +13,17 @@
                     <form method="POST" action="{% url 'movie_picker:new_movie' %}">
                         {{ form.title }}
                         {% csrf_token %}
-                        <table id="id_list_table" class="table">
-                            {% for movie in movies %}
-                              <tr><td>{{ forloop.counter}}: {{ movie.title }}</td></tr>
-                            {% endfor %}
-                        </table>
                     </form>
-            </div>
+        </div>
         </div>
    </div>
 </div>
 {% endblock %}
 
 {% block main-content %}
+<table id="id_list_table" class="table">
+    {% for movie in movies %}
+      <tr><td>{{ forloop.counter}}: {{ movie.title }}</td></tr>
+    {% endfor %}
+</table>
 {% endblock %}
