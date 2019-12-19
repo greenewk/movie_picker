@@ -66,3 +66,12 @@ class HomePageTest(FunctionalTest):
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Predator')
 
+    # Jasper tries to add a movie that is already on his list,
+    # but is unable to and is warned of this by an error message
+
+    # Jasper decides that he wants to remove a movie from his list
+
+    # Jasper clicks the "pick a movie" button and is recommended a movie
+    # from his list to watch.
+
+

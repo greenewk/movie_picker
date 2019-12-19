@@ -11,14 +11,12 @@ class HomePageTest(TestCase):
 class NewMovieTest(TestCase):
 
     def test_NON_POST_requests_redirect_to_home(self):
-        response = self.client.post(
-            '/movie_picker/new_movie', data={'title': 'test'}
-        )
+        response = self.client.get('/movie_picker/new_movie')
         self.assertEqual(response.status_code, 301)
 
     def test_can_save_POST_request(self):
         self.client.post(
-            'movie_picker/new_movie', data={'title': 'Terminator 2'}
+            '/movie_picker/new_movie/', data={'title': 'Terminator 2'}
         )
 
 
