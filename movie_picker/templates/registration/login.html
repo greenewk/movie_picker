@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block top-content %}
+{% endblock %}
+
+{% block main-content %}
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+  <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+  {% else %}
+  <p>Please login to see this page.</p>
+  {% endif %}
+{% endif %}
+<div class="container">
+  <div class="col-md-6">
+    <div class="text-center">
+      <form method="post" action="{% url 'movie_picker:login' %}">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+          </tr>
+          </table>
+         <input type="submit" value="login">
+         <input type="hidden" name="next" value="{% url 'movie_picker:home' %}">
+        </form>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+
