@@ -1,5 +1,13 @@
 
 
+#main-container {
+    margin-top: 2em;
+}
+
+.jumbotron {
+    padding: 2em 2em;
+}
+
 .nav-item {
     justify-items: flex-end;
 }
