@@ -4,6 +4,24 @@
 <link href="/static/home.css" rel="stylesheet">
 {% endblock %}
 
+{% block nav %}
+<nav class="navbar navbar-expand-md  navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Super Movie Picker</a>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+      </ul>
+      </div>
+
+</nav>
+
+{% endblock %}
+
 {% block top-content %}
     <h1>Submit a movie title</h1>
     <form method="POST" action="{% url 'movie_picker:new_movie' %}">
